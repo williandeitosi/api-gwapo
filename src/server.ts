@@ -1,13 +1,11 @@
 import cors from "@fastify/cors";
-import fastify from "fastify";
+import fastify, { type FastifyInstance } from "fastify";
 import { env } from "../config/env";
+import { setupRoutes } from "./routes";
 
-const app = fastify();
+const app: FastifyInstance = fastify();
 
 app.register(cors, { origin: "*" });
-
-app.get("/", () => {
-  return "Willian online";
-});
+app.register(setupRoutes, { prefix: "/api" });
 
 app.listen({ port: env.PORT }).then(() => console.log("Server is Running!"));
