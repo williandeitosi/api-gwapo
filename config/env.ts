@@ -5,6 +5,9 @@ const envSchema = z.object({
   PORT: z.coerce.number().default(3333),
   ADMIN_EMAIL: z.string(),
   ADMIN_PASSWORD: z.string(),
+
+  JWT_ACCESS_SECRET: z.string(),
+  JWT_REFRESH_SECRET: z.string(),
 });
 
 const _env = envSchema.safeParse(process.env);
