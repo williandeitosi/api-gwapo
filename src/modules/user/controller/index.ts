@@ -1,6 +1,6 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
 import { adminSchema } from "../schema";
-import type { AdminService } from "../use-case";
+import type { AdminService } from "../use-case/adminService";
 
 export class AdminController {
   constructor(private service: AdminService) {}
