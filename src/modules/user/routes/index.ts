@@ -1,6 +1,6 @@
 import type { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { AdminController } from "../controller";
-import { AdminService } from "../use-case";
+import { AdminService } from "../use-case/adminService";
 
 const service = new AdminService();
 const controller = new AdminController(service);
