@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { env } from "../../../../config/env";
 import { db } from "../../../../prisma/db";
 interface TokenPayload {
-  id: string;
+  id: number;
   email: string;
 }
 export class AuthService {
