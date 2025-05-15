@@ -14,11 +14,27 @@ export class AdminController {
       const data = result.data;
       const { email, password } = data;
 
-      await this.service.login({ email, password });
+      const loginResult = await this.service.login({ email, password });
 
-      return reply.code(200).send({ message: "Login successfully!" });
+      if (!loginResult.success) {
+        return reply.code(401).send({
+          success: false,
+          message: loginResult.message,
+        });
+      }
+
+      return reply.code(200).send({
+        success: true,
+        message: loginResult.message,
+        accessToken: loginResult.access_token,
+        refreshToken: loginResult.refresh_token,
+      });
     } catch (error) {
-      console.log(error);
+      console.error("Login error:", error);
+      return reply.code(500).send({
+        success: false,
+        message: "Internal server error",
+      });
     }
   }
 }
